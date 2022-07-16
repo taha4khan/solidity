@@ -1,0 +1,108 @@
+
+// SPDX-License-Identifier: none
+ 
+ pragma solidity ^0.8.12;
+
+contract Marnooed_Me{
+
+    uint256 _number;
+    string _message;
+    address _owner;
+    uint256 public withdraw;
+    mapping (address=>bool) public users;
+
+    constructor(string memory _anySMS){
+        _number = 1;
+        _message = _anySMS; 
+        _owner = msg.sender;
+    }
+
+    function printMessage( ) public view returns (string memory){
+        return _message;
+    }
+
+    function addition(uint256 a , uint256 b) public pure returns (uint256){
+        return a+b;
+    }
+
+    function multiplication(uint x ,uint256 y)public pure returns(uint256){
+        return x*y;
+    }
+
+
+    function setMessage(string memory newMessage) external payable{
+        require (_owner == msg.sender, "Set MESSAGE ONLY OWNER FUNCTION");
+        require (msg.value >= 1 ," send some wei");
+        _message=newMessage;
+}
+
+    function transferOwnership(address newOwner) external{
+        require(_owner == msg.sender , "only Owner function");
+        _owner = newOwner;
+    }
+
+    function withdrawFunds(uint256 OUTamount, address recipent) external payable {
+        uint totalbalance = address (this).balance;
+        require (OUTamount < totalbalance ,"enter less amount than contract have");
+        payable(recipent).transfer(OUTamount);
+        withdraw=withdraw+OUTamount;
+    }
+
+    function remaingBalance() external view returns(uint256){
+        return address(this).balance;
+    }
+
+
+
+    function Add_User(address newuser) external{
+        users[newuser]= true;
+    }
+        
+    function setMsgNewUser(string memory _NewUserMsg) public payable {
+        require (msg.value >= 1 ," send some wei");   
+        require (users[msg.sender] == true ,"only new user function");   
+        _message=_NewUserMsg;
+        users[msg.sender]=false;
+
+    }
+
+}
+
+// ---------------------------------------------------------
+
+pragma solidity ^0.8.12;
+
+contract wong{
+    string message;
+    mapping  (address => bool) public USER;
+
+constructor (string memory MASSAGA) {
+     message = MASSAGA;
+}
+
+function printMessage () public view returns(string memory ) {
+     
+    return message;
+   
+}
+
+function PPrintMessage  (string memory _sms)  public  {
+     message=_sms;
+    
+   
+}
+
+function adduser (address _userAdd) public{
+    require (USER[msg.sender] == false,"already added");
+    USER[msg.sender] = true;
+    USER[_userAdd]=true;
+}
+ 
+function setnewuser ( string memory newusermsg) external payable{
+    require (msg.value>=1,"send WEI");
+    require (USER[msg.sender] ==true ,"only USER function");
+    message= newusermsg;
+}
+
+}
+
