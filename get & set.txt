@@ -1,0 +1,52 @@
+//SPDX-License-Identifier:none
+pragma solidity ^0.8.12;
+
+contract SpitOfLand {
+    string public user;
+    address private owner;
+    uint256 public id;
+    constructor (string memory _UserName, address _OldOwner, uint256 _RegistrationNo){
+        user = _UserName;
+        owner = _OldOwner;
+        id = _RegistrationNo;
+    }
+
+    function print(uint256 _zz) public {
+        require (0 == _zz, "0 is !== to specific zz");
+    }
+    function get_UserName() public view returns (string memory _UserName){
+        return (user);
+    }
+    function get_OldOwner() public view returns (address _OldOwner){
+        return (owner);
+    }
+    function get_RegistrationNo() public view returns (uint _RegistrationNo){
+        return (10);
+    }
+
+    function setid(uint256) internal{
+        id=97;
+    }
+    function setowner()external payable {
+        owner=msg.sender;
+    }
+    function setuser(string memory) external payable{
+        user="qaiyoum";
+    }
+    
+
+    // function setMsg (string memory hello) external payable {
+    //         }
+    // function print(uint256 _a) public view returns(string memory _msg , uint256 _id){
+    //     require (1==_a,"1 is not equal t0 1");
+    //     return (message,2);
+    // }
+
+    // function setMsg(string memory hello) external payable{
+    //     message = hello;
+    //     require (owner==msg.sender, "only owner can do it");
+    //     require (msg.value >1000,"send some more money");
+    // }
+
+
+}
