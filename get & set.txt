@@ -50,3 +50,49 @@ contract SpitOfLand {
 
 
 }
+
+
+----------------------------------------------------------------------------------------------------------------------------
+//SPDX-Licence-Identifier:
+pragma solidity ^0.8.12;
+contract tichkoleandtichkole {
+    uint256 public id;
+    string public coursename;
+    address private  owner;
+
+    constructor(uint256 _id,string memory _name, address _owner){
+        id=_id;
+        coursename=_name;
+        owner=_owner;
+
+    }
+
+    function getid() public pure returns(uint256 _idk){
+        return (10);
+    }
+
+    function getname() public view returns(string memory _msg){
+        return (coursename);
+    }
+
+    function getaddress() public view returns(address _ppk){
+        return (owner);
+    }
+
+    function setid(uint256 ) external  payable{
+        id=10;
+    }
+
+    function setcoursename(string memory) external payable{
+      coursename="blockchain";
+    }
+
+
+    function setaddress() external  payable{
+      owner=msg.sender;
+
+    }
+
+
+}
+
