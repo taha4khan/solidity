@@ -1,0 +1,79 @@
+// spdx-Licrnse-Identifier: none
+ 
+ pragma solidity ^0.8.12;
+
+contract Marnooed_Me{
+
+    uint256 _number;
+    string _message;
+    address _owner;
+
+    constructor(string memory _anySMS){
+        _number = 1;
+        _message = _anySMS; 
+        _owner = msg.sender;
+    }
+
+    function printMessage() public view returns (string memory){
+        return _message;
+    }
+
+    function addition(uint256 a , uint256 b) public pure returns (uint256){
+        return a+b;
+    } 
+
+    function number() public view returns (uint256) {
+        return  _number;
+    }
+
+    function setMessage(string memory newMessage) external payable{
+        require (_owner == msg.sender, "Set MESSAGE ONLY OWNER FUNCTION");
+        require (msg.value == 10 ," send some wei");
+        _message=newMessage;
+    }
+
+    function transferOwnership(address newOwner) external{
+        require(_owner == msg.sender , "only Owner function");
+        _owner = newOwner;
+    }
+
+    function withdrawFunds() external payable returns (uint256){
+        require (_owner == msg.sender, "only OWNER FUNCTION");
+        uint totalbalance = address (this).balance;
+        return totalbalance;
+    }
+
+
+
+    function onlyOwnerWithdraw(uint256 OUTamount) public payable returns(uint256){
+        require (OUTamount < address(this).balance , "enter less amount than contract have");
+        return OUTamount;
+    }
+
+    function recipentADDRESS(address receiver) public payable returns(address){
+        return receiver;
+    }
+
+
+    // function onlyOwnerWithdraw(amount , recipent) internal returns(uint256, address){
+    //     require();
+
+
+    // function withdrawTAKEOUTamount() public payable returns (uint256) {
+    //   if (msg.sender > address(this).balance) {
+    //      msg.sender=OWNER;
+    //      address(this).transfer(OWNER);
+
+    //      return true;
+    //   } else {
+    //      return false; 
+    //     }
+
+
+
+}
+
+      
+
+    
+
