@@ -1,0 +1,50 @@
+//SPDX-License-Identifier:none
+pragma solidity ^0.8.12;
+
+contract _enum {
+    enum FreshJuiceSize{SMALL, MEDIUM, REGULAR, LARGE}
+
+    FreshJuiceSize choose;
+    FreshJuiceSize constant defaultChoice = FreshJuiceSize.REGULAR;
+
+    function takeLarge() public {
+        choose = FreshJuiceSize.LARGE;
+    }
+
+    function takeSmall() public {
+        choose = FreshJuiceSize.SMALL;
+    }
+
+    function takeMedium() public {
+        choose = FreshJuiceSize.MEDIUM;
+    }
+
+    function DisplaySelected() public view returns (FreshJuiceSize) {
+        return choose;
+    }
+
+    function takeDefaultChoice()public pure returns (uint) {
+        return uint(defaultChoice);
+    } 
+
+} 
+
+//---------------------------------------------------------------
+
+pragma solidity ^0.8.12;
+
+contract _event {
+    event xyz(uint);
+    uint count;
+    receive() external payable{
+        count++;
+        emit xyz (count);
+    }
+    function blok() external view returns (uint,uint,address){
+        return(
+            block.timestamp,
+            block.number,
+            block.coinbase);
+    } 
+
+}
