@@ -1,0 +1,53 @@
+//SPDX-License-Identifier:none
+pragma solidity ^0.8.12;
+
+contract Donation {
+
+    uint256 _count;
+    address _owner;
+    address [] public _users;
+    mapping(address => uint256) public _balance;
+    mapping(
+        address =>mapping(
+            string =>mapping(
+                string=>uint256
+            )
+        )
+    )public _detailBalance;
+
+    receive() external payable {
+        _balance[msg.sender] +=msg.value;
+        _detailBalance[msg.sender]["saving"]["eth"]+=msg.value;
+        _count++;
+        require(!checkDuplicate(),"This is Duplicate");
+        _users.push(msg.sender);
+    }
+
+    
+
+    function checkDuplicate() public view returns (bool){
+        bool _valid;
+        for(uint i=0; i < _users.length; i++){
+            if(_users[i] == msg.sender){
+                _valid = true;
+            }
+        }
+        return _valid;
+    }  
+
+
+
+
+
+
+
+    function bulkTransfer() external {
+        for(uint i=0; i < _users.length; i++){
+            _balance[_users[i]] +=2;
+            payable(_users[i]).transfer(2);
+        }
+    }
+
+
+}
+
