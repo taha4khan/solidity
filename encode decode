@@ -1,0 +1,65 @@
+
+
+pragma solidity ^0.8.15;
+contract hashes{
+    function en_code(string memory _a)external pure returns(bytes memory){
+        return (abi.encode(_a));
+    }
+    function de_code(bytes memory _h)external pure returns(string memory){
+        return (abi.decode(_h,(string)));
+    }
+
+
+
+    // both data_types encoding;
+    function en_code_both(string memory _name,uint _roll,address _add)external pure returns(bytes memory ){
+        return((abi.encode(_name,_roll,_add)));
+    }
+
+    // both data_types decoding;
+    function de_code_both(bytes memory _a)external pure returns(string memory,uint,address){
+        return abi.decode(_a ,(string,uint,address));
+    } 
+
+
+
+    //keccak256
+    function keccak(string memory _a)external pure returns(bytes32){
+        return(keccak256(abi.encode(_a)));
+    }
+    function keccak_both(string memory _a,uint _b,address _c)external pure returns(bytes32){
+        return(keccak256(abi.encodePacked(_a,_b,_c)));
+    }
+    function verify_keccak(bytes32 _p,string memory _a,uint _b,address _c)external pure returns(bool){
+        if(_p == keccak256(abi.encodePacked(_a,_b,_c))){
+            return(true);
+        }
+        else{
+            return(false);
+        }
+    }
+
+
+    function digit_count(uint _num)external pure returns(uint){
+
+        uint count;
+        if(_num == 0){
+            count = 1;
+            return(count);
+        }
+        // if(_num < 0){
+        //     _num = -_num;
+        //     while(_num != 0){
+        //     count++;
+        //     _num/=10;
+        // }
+        //     return(count);
+        // }
+        while(_num != 0){
+            count++;
+            _num/=10;
+        }
+        return(count);
+    }
+}
+
