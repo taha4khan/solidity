@@ -1,0 +1,41 @@
+//SPDX-License-Identifier:none
+
+pragma solidity 0.8.12;
+
+contract wong {
+    string message;
+    mapping (address=>bool) public user;
+    string number;
+    string frt;
+    
+
+    constructor(string memory mmg ){
+        message = mmg;
+        frt ="$ IS TO SHOW DEFAULT MSG $";
+    }
+
+function ext_default_msg()   public view   returns (string memory) {
+    return  frt ;
+
+}
+
+
+function printMessage () public view returns (string memory){
+    return message;
+    
+}
+
+ 
+function addUSER (address newuser) external {
+    user[newuser]=true;
+} 
+
+function msgNewUser (string memory newMSG) public payable {
+    require (msg.value >= 1 ,"send some wei");
+    require (user[msg.sender]==true ,"only Nuser function");
+    message=newMSG;
+    user[msg.sender]=false;
+    
+}
+
+}
