@@ -1,0 +1,30 @@
+//SPDX-License-Identifier:none
+pragma solidity ^0.8.12;
+
+contract book {
+    struct _book_data{
+        uint256 _id;
+        string _name;
+        string _authorName;
+        uint _edition;
+        uint _supply;
+        bool _status;
+    }
+
+     _book_data newBook;
+
+     function viewBook()  external view returns ( _book_data memory ){
+         return newBook;
+     }
+    
+    function addNewBook() external {
+        
+        newBook._id=34;
+        newBook._name="mastering Bitcoin";
+        newBook._authorName="asd";
+        newBook._edition=12;
+        newBook._supply=100;
+        newBook._status=true;
+        }
+
+}
