@@ -1,4 +1,4 @@
-i1.sol
+int.sol
 pragma solidity ^0.8.12;
 
 contract datacontract {
@@ -16,8 +16,8 @@ contract datacontract {
     }
 }
 
-//-------------------------
-i2.sol
+//-----------------
+INT.sol
 pragma solidity ^0.8.12;
 
 interface data{
