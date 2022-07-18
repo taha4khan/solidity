@@ -1,0 +1,69 @@
+//SPDX-License-Identifier:none
+pragma solidity ^0.8.12;
+
+contract game {
+    // uint256 player1;
+    // uint256 player2;
+    uint rock;
+    uint paper;
+    uint cessior;
+ 
+    
+
+    constructor(){
+        rock = 1;
+        paper = 2;
+        cessior =3;
+    }
+
+    function turn1 (uint avatar_one,uint avatar_two) external pure returns(
+        string memory){
+
+    //   if (msg.sender > address(this).balance) {
+    //      msg.sender=OWNER;
+    //      address(this).transfer(OWNER);
+
+    //      return true;
+    //   } else {
+    //      return false; 
+    //     }
+
+    
+    if (avatar_one >= 4){
+       return "???Error??? wrong move";
+    }
+    if (avatar_two >= 4){
+       return "???Error??? enter valid move";
+    }
+    if (avatar_one > avatar_two){
+      return "win  player 1";
+    }
+    if (avatar_one < avatar_two){
+       return "player 2 win";
+    }
+
+
+
+    else {
+        return "tie";
+    }
+}
+   
+//     function turn2 (uint one_, uint two) external view returns(uint){
+
+//     if (rock < cessior){ 
+//         return rock;
+//     }
+
+    
+// }
+   
+
+       // function print(uint256 _zz) public {
+    //     require (0 == _zz, "0 is !== to specific zz");
+    // function turn1 (string memory one_,string memory two) public view returns(string memory bn){
+    //     require (one_ == paper &&  "pape win");
+
+    //}
+
+}
