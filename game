@@ -7,7 +7,7 @@ contract game {
     uint rock;
     uint paper;
     uint cessior;
- 
+    uint _zz;
     
 
     constructor(){
@@ -16,7 +16,7 @@ contract game {
         cessior =3;
     }
 
-    function turn1 (uint avatar_one,uint avatar_two) external pure returns(
+    function turn1 (uint avatar_one,uint avatar_two , uint _zz) external pure returns(
         string memory){
 
     //   if (msg.sender > address(this).balance) {
@@ -28,7 +28,8 @@ contract game {
     //      return false; 
     //     }
 
-    
+     require (0 == _zz, "0 is !== to specific zz");
+
     if (avatar_one >= 4){
        return "???Error??? wrong move";
     }
