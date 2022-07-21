@@ -16,7 +16,7 @@ contract game {
         cessior =3;
     }
 
-    function turn1 (uint avatar_one,uint avatar_two , uint _zz) external pure returns(
+    function turn1 (uint avatar_one,uint avatar_two , uint password_to_access) external view returns(
         string memory){
 
     //   if (msg.sender > address(this).balance) {
