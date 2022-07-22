@@ -32,9 +32,10 @@ contract second {
      D_address = _aaa;
     }
     //address private constant DataContractAddress = 0xbee7ddD295b11b421c849ba060941bD1E17E0435;
-
-
-    function getAe() external view returns(uint) {
-        return D_address.getAge();
+ 
+    function getAe(uint _zz) public view returns(uint) {
+        if (0 == _zz) {
+            return D_address.getAge();
+        }
     }
 }
