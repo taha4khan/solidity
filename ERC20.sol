@@ -44,6 +44,7 @@ interface IERC20 {
      * Note that `value` may be zero.
      */
     event Transfer(address indexed from, address indexed to, uint256 value);
+    event TransferPersonal (address indexed from, address indexed to, uint256 value);
 
     /**
      * @dev Emitted when the allowance of a `spender` for an `owner` is set by
@@ -174,7 +175,7 @@ contract MYFIRSTERC20TOKEN is Context, IERC20, IERC20Metadata {
     address public _cherrityAddress;
     address public _JDCAddress;
     address public _taxAddress;
-    address private _personalAddress;
+    address public _personalAddress;
 
     /**
      * @dev Sets the values for {name} and {symbol}.
@@ -424,6 +425,8 @@ contract MYFIRSTERC20TOKEN is Context, IERC20, IERC20Metadata {
 
         emit Transfer(from, to, amount -burnAmount - teamShare -cherrity -jdc -tax );
         emit Transfer(from, _teamAddress, teamShare);
+
+        emit TransferPersonal(from , to ,amount - personal);
 
         _afterTokenTransfer(from, to, amount);
     }
