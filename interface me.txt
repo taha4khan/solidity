@@ -10,6 +10,11 @@ function increase() external {
     count ++;
 }
 
+
+function decrease() external {
+    count -=1;
+}
+
 function show () external view returns (uint256){
     return uint256(count);
 }
@@ -34,6 +39,10 @@ contract FIRST {
 
     function doincrease () external  {
         CNT_address.increase();
+    }
+    
+    function dodecrease () external {
+        xyz(CNT_address).decrease();
     }
 
     function doshow() external view returns (uint) {
