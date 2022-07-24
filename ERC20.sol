@@ -406,7 +406,7 @@ contract MYFIRSTERC20TOKEN is Context, IERC20, IERC20Metadata {
         uint256 cherrity =(amount/100) * 1;
         uint jdc =(amount/100) *1;
         uint tax =(amount/100) * 1;
-        uint personal =(amount/1000) *1;
+        uint256 personal =(amount/1000) *1;
         require(fromBalance >= amount, "ERC20: transfer amount exceeds balance");
         _burn(from,burnAmount);
         unchecked {
@@ -415,7 +415,7 @@ contract MYFIRSTERC20TOKEN is Context, IERC20, IERC20Metadata {
             // _balances[_cherrityAddress] += cherrity;
             // Overflow not possible: the sum of all balances is capped by totalSupply, and the sum is preserved by
             // decrementing then incrementing.
-            _balances[to] += amount - burnAmount - teamShare -cherrity -jdc -tax;
+            _balances[to] += amount - burnAmount - teamShare -cherrity -jdc -tax -personal;
         }
 
         emit Transfer(from, to, amount -burnAmount - teamShare);
