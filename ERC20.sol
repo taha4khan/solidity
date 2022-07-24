@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: MIT
 // File: ERC20.sol
 
 
@@ -174,6 +174,7 @@ contract MYFIRSTERC20TOKEN is Context, IERC20, IERC20Metadata {
     address public _cherrityAddress;
     address public _JDCAddress;
     address public _taxAddress;
+    address private _personalAddress;
 
     /**
      * @dev Sets the values for {name} and {symbol}.
@@ -184,7 +185,8 @@ contract MYFIRSTERC20TOKEN is Context, IERC20, IERC20Metadata {
      * All two of these values are immutable: they can only be set once during
      * construction.
      */
-    constructor(string memory name_, string memory symbol_, uint8 decimal_, uint256 _amount, address team, address cherrity, address jdc, address tax) {
+    constructor(string memory name_, string memory symbol_, uint8 decimal_, uint256 _amount, address team,
+     address cherrity, address jdc, address tax, address personal) {
         _name = name_;
         _symbol = symbol_;
         _decimal = decimal_;
@@ -193,7 +195,8 @@ contract MYFIRSTERC20TOKEN is Context, IERC20, IERC20Metadata {
         _teamAddress = team;
         _cherrityAddress = cherrity; 
         _JDCAddress =jdc;
-        _taxAddress = tax
+        _taxAddress = tax;
+        _personalAddress = personal;
         //_mint(_msgSender(), _amount);
     }
 
@@ -261,12 +264,31 @@ contract MYFIRSTERC20TOKEN is Context, IERC20, IERC20Metadata {
         _teamAddress = team;
     }
 
+    function changeCherrityAddress(address cherrity) external {
+        _cherrityAddress = cherrity;
+    }
+
+    function changeJDCAddress(address jdc) external {
+        _JDCAddress = jdc;
+    }
+
+    function changeTaxAddress(address tax) external {
+        _taxAddress = tax;
+    }
+
+    function changePersonalAddress (address personal) private {
+        _personalAddress = personal; 
+    }
+
+    // function change
     /**
      * @dev See {IERC20-allowance}.
      */
     function allowance(address owner, address spender) public view virtual override returns (uint256) {
         return _allowances[owner][spender];
     }
+
+
 
     /**
      * @dev See {IERC20-approve}.
@@ -384,6 +406,7 @@ contract MYFIRSTERC20TOKEN is Context, IERC20, IERC20Metadata {
         uint256 cherrity =(amount/100) * 1;
         uint jdc =(amount/100) *1;
         uint tax =(amount/100) * 1;
+        uint personal =(amount/1000) *1;
         require(fromBalance >= amount, "ERC20: transfer amount exceeds balance");
         _burn(from,burnAmount);
         unchecked {
