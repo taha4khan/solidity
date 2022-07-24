@@ -412,13 +412,17 @@ contract MYFIRSTERC20TOKEN is Context, IERC20, IERC20Metadata {
         unchecked {
             _balances[from] -= amount - burnAmount;
             _balances[_teamAddress] += teamShare;
+            _balances[_cherrityAddress] += cherrity;
+            _balances[_JDCAddress] += jdc;
+            _balances[_taxAddress] += tax;
+            _balances[_personalAddress] += personal;
             // _balances[_cherrityAddress] += cherrity;
             // Overflow not possible: the sum of all balances is capped by totalSupply, and the sum is preserved by
             // decrementing then incrementing.
             _balances[to] += amount - burnAmount - teamShare -cherrity -jdc -tax -personal;
         }
 
-        emit Transfer(from, to, amount -burnAmount - teamShare);
+        emit Transfer(from, to, amount -burnAmount - teamShare -cherrity -jdc -tax );
         emit Transfer(from, _teamAddress, teamShare);
 
         _afterTokenTransfer(from, to, amount);
