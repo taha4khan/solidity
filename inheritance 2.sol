@@ -28,8 +28,13 @@ contract inhritnce is inheri {
     function increase (uint256 _no, uint _count) external  pure returns (uint256) {
         return _count = add(_no,_count);
     }
+
     //  function erec (string memory erc) external pure returns (string memory) {
-    //      return erc = PUTmessage(erc);
+    //      return  printmessage;
     //  }
+
+    function tet (string memory tt) external  returns (string memory) {
+       return   _message = tt;
+    }
 
     }
