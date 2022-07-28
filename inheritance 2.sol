@@ -38,3 +38,4 @@ contract inhritnce is inheri {
     }
 
     }
+
