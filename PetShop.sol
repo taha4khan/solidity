@@ -2,10 +2,16 @@
 pragma solidity ^0.8.12;
 
 contract PetShop {
-    address[20] public adopters;
+    address[20]  adopters;
+    address owner;
+    
+    // constructor(){
+    //     owner = msg.sender;
+    // }
 
     modifier isOwner(uint256 petId) {
-        require (adopters [petId] == address(0),"ERROR: Only Pet adopter can remove adoption");
+        //require (adopters [petId] == address(0),"ERROR: Only Pet adopter can remove adoption");
+        require (adopters [petId] == msg.sender,"ERROR: Only Pet adopter can remove adoption");
         _;
     }
 
@@ -23,7 +29,14 @@ contract PetShop {
         return adopters[petId]; 
     }
 
-    function removeAdoption (uint256 petId) public isOwner(petId) returns (bool){
+//     function removeAdoption (uint256 petId, address owner) public isOwner(petId) returns (bool){
+//         adopters[petId] = address(0);
+//         return true;
+//     }
+// }
+
+
+   function removeAdoption (uint256 petId) public isOwner(petId) returns (bool){
         adopters[petId] = address(0);
         return true;
     }
