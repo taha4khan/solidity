@@ -1,0 +1,70 @@
+// SPDX-License-Identifier: no-license
+pragma solidity ^0.8.0;
+
+contract ERC7211 {
+    string private _name;
+
+    string private _symbol;
+
+    mapping(uint256 => address) private _owners;
+	address private _owner;
+
+    mapping(address => uint256) private _balances;
+    
+    uint private ID;
+   mapping(address=>bool) public deen;
+    mapping (address => string ) private degree;
+    
+    constructor(string memory name_, string memory symbol_) {
+        _name = name_;
+        _symbol = symbol_;
+	deen[msg.sender] = true;
+	_owner = msg.sender;
+    
+    }
+    function addRemoveDeen(address _a, bool _status) public  {
+        require(_owner == msg.sender," Only owner can set Ownership .");
+       deen[_a] = _status;
+    }
+    function balanceOf(address owner) public view returns (uint256) {
+        require(owner != address(0), "ERC721: address zero is not a valid owner");
+        return _balances[owner];
+    }
+    function ownerOf(uint256 tokenId) public view returns (address) {
+        address owner = _owners[tokenId];
+        require(owner != address(0), "ERC721: invalid token ID");
+        return owner;
+    }
+
+    function name() public view  returns (string memory) {
+        return _name;
+    }
+
+    function symbol() public view returns (string memory) {
+        return _symbol;
+    }
+
+    function tokenURI(uint256 tokenId) public view returns (string memory) {
+        address b = ownerOf(tokenId);
+        return degree[b];
+    }
+
+    function _mint(address to,string memory _p) external virtual {
+        require(to != address(0), "ERC721: mint to the zero address");
+        require(deen[msg.sender],"Only deen can Operate ,..");
+        ID++;
+        degree[msg.sender] = _p;
+         _balances[to] += 1;
+        _owners[ID] = to;
+    }
+    
+    function _verification(uint _n)external view returns(string memory){
+        require(ownerOf(_n) == msg.sender ,"Your are not a degree HOLDER !");
+        return degree[msg.sender]; 
+    }
+}
+
+
+// use in vsCode in nodemodules file
+// "start": "react-scripts --openssl-legacy-provider start",
+// "start": "react-scripts start",
